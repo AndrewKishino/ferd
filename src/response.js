@@ -47,6 +47,16 @@ Response.prototype.send = function(outgoingMessage) {
 };
 
 /**
+ * Posts message to same channel
+ * @param  {obj} response A message object
+ */
+Response.prototype.postMessage = function(outgoingMessage) {
+  var channelId = this.incomingMessage.channel;
+  var channel = this.getChannelGroupOrDMByID(channelId);
+  channel.postMessage(outgoingMessage);
+};
+
+/**
  * Response.prototype.sendDirectMessage
  *
  * @description Sends a direct message to a user. Returns nothing.
